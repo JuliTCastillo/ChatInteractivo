@@ -1,3 +1,27 @@
-<div>
-    <h1>Suenito</h1>
-</div>
+<section>
+    <div class="panel">
+        <div id="propuestas">
+            <h3>Juegos</h3>
+            <div class="games">
+                <button type="submit" class="btnGame">
+                    <img src="image/dados.png" alt="" width="40">
+                    Adivinanzas
+                </button>
+                <button type="submit" class="btnGame">
+                    <img src="image/quizas.png" alt="" width="40">
+                    Trivia
+                </button>
+            </div>
+        </div>
+        <div class="chatGeneral">
+            <h3>Chat</h3>
+            <div class="chat">
+                <div id="logsPanel"></div>
+                <input id="chatBox" type="text">
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="js/chat.js"></script>

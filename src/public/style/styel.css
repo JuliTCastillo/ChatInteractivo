@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+*{
+    margin: 0px;
+    font-family: "Outfit", sans-serif;
+    color: #444444;
+}
+
+header{
+    display: flex;
+    background-color: #EAE2ED;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 20px 40px;
+}
+
+.navegacion{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 280px;
+    padding: 0;
+}
+
+.link{ 
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color: #444444;
+    width: 130px;
+    padding: 5px;
+}
+
+.link:hover{
+    color: #895e91;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.panel{
+    display: grid;
+    grid-template-columns: 250px 2fr;
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+#propuestas, .chatGeneral{
+    border: #EAE2ED solid 1px;
+    border-radius: 10px;
+    height: 500px;
+    padding: 10px 20px;
+}
+
+.chat{
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+    justify-content: space-between;
+}
+
+#chatBox{
+    border-radius: 10px;
+    height: 30px;
+}
+
+.games{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.btnGame{
+    width: 100%;
+    border-radius: 10px;
+    border: #EAE2ED solid 2px;
+    background-color: white;
+    margin: 5px 0px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btnGame:hover{
+    background-color: #EAE2ED;
+}
+
+footer{
+    background-color: #EAE2ED;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    text-align: center;
+}
+
+footer p{
+    margin: 0;
+    padding: 10px;
+}
