@@ -1,3 +1,6 @@
+const btnTaTeti = document.getElementById("btnTaTeTi");
+const contendorLoading = document.getElementById("contenedorLoading");
+console.log(btnTaTeti)
 //Este es el cliente 
 const socket = io({
     //flag de conexion con el servidor
@@ -6,7 +9,7 @@ const socket = io({
 let user; //Información de usuario
 const chatBox = document.getElementById("chatBox"); //obtenemos el input del chat
 
-//Generamos un sweet alert
+// Generamos un sweet alert
 Swal.fire({
     title: "Identificate!",
     input: "text",
@@ -22,7 +25,6 @@ Swal.fire({
     user = result.value;
     socket.connect();
     socket.emit("authenticated", user)
-    console.log(user)
 })
 
 chatBox.addEventListener('keyup', evento =>{
@@ -37,26 +39,35 @@ chatBox.addEventListener('keyup', evento =>{
     }
 })
 
+btnTaTeti.addEventListener('click', (evento) =>{
+    contendorLoading.innerHTML = `
+        <div class="spinner-border text-primary" role="status"></div>
+        <p>Esperando a un contrincante</p>
+    `
+
+    /*Detectar cuando un jugador ingrese como contrincante. Vaciar el loading y mostrar a ambos usuarios el modal con sus datos. Esto deberia modificarse con los emit y on para poder configurar bien los turnos y la logica del juego*/
+    socket.emit("tateti:start", user)
+    socket.emit('message', {config: "game", image:"image/tic-tac-toe.png", message: `${user} a comenzado un juego...`})
+})
+
 //Configramos nuestro socket listener del cliente
 socket.on('logs', data => {
     const logsPanel = document.getElementById("logsPanel");
     let message = "";
     //Como el io nos devuelve un arreglo
     data.forEach(msg => {
-        message += `<p>${msg.user} dice: ${msg.message}</p>`
+        if(msg.config === "bienvenida") message+= `<p class="msgBienvenida">${msg.message}</p>`
+        else if(msg.config === "game") message += `
+            <div class="game">
+                <img src='${msg.image}' alt="Logo de game" width="70"/>
+                <div>
+                    <p>${msg.message}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contenedorGame">Unirse</button>
+                </div>
+            </div>    
+        `
+        else message += `<p>${msg.user} dice: ${msg.message}</p>`
     });
     //lo agregamos al HTML
     logsPanel.innerHTML = message;
-})
-
-socket.on('newUserConnected', data =>{
-    if(!user) return;
-    Swal.fire({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 2000, //2seg
-        title: `${data} se ha unido al chat`,
-        icon: 'success'
-    })
 })

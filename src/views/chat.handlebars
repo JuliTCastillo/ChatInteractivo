@@ -3,10 +3,11 @@
         <div id="propuestas">
             <h3>Juegos</h3>
             <div class="games">
-                <button type="submit" class="btnGame">
-                    <img src="image/dados.png" alt="" width="40">
-                    Adivinanzas
+                <button type="button" class="btnGame" id="btnTaTeTi" data-bs-toggle="modal" data-bs-target="#loading">
+                    <img src="image/tic-tac-toe.png" alt="" width="40">
+                    Ta-Te-Ti
                 </button>
+
                 <button type="submit" class="btnGame">
                     <img src="image/quizas.png" alt="" width="40">
                     Trivia
@@ -21,7 +22,6 @@
             </div>
         </div>
     </div>
+    {{>tateti}}
+    {{>loading}}
 </section>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="socket.io/socket.io.js"></script>
-<script src="js/chat.js"></script>

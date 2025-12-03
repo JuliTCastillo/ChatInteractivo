@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heroui/spinner": "^2.2.24",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.2",
     "nodemon": "^3.1.10",

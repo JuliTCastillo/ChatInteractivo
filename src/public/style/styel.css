@@ -66,6 +66,11 @@ header{
     border-radius: 10px;
     height: 30px;
 }
+.msgBienvenida{
+    text-align: center;
+    color: #7d7d7d;
+    font-style: italic;
+}
 
 .games{
     display: flex;
@@ -89,6 +94,43 @@ header{
 
 .btnGame:hover{
     background-color: #EAE2ED;
+}
+
+/*Diseño Tateti*/
+.game{
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid #dbdbdb;
+    border-radius: 10px;
+    padding: 10px;
+    width: 330px;
+    background-color: #e3e3e3;
+}
+.jugadores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user{
+    border: #444444 solid 2px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    width: 300px;
+}
+.tablero{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 100px);
+    row-gap: 10px;
+    column-gap: 10px;
+
+}
+.celda{
+    width: 100px;
+    height: 100px;
+    background-color: #cecece;
+    border: solid gray 2px;
+    border-radius: 10px;
 }
 
 footer{

@@ -3,6 +3,7 @@ import handlebars from 'express-handlebars'
 import __dirname from "./utils.js";
 import { Server } from "socket.io";
 import viewsRouter from './routes/views.router.js'
+import {Tateti} from './public/js/Tateti.js'
 
 //Creamos la variable app
 const app = express();
@@ -22,19 +23,31 @@ const io = new Server(server); //Le indicamos en que puerto debe estar escuchand
 
 //lista de mensaje
 const message = [];
+const tateti = new Tateti();
 
 //io.on -> Escuchador de evento, si se produce una conexion en el servidor
 io.on('connection', socket =>{
     //IO es el servidor | SOCKET son los clientes que se conecten
     console.log("socket connected");
     socket.emit('logs', message); //para que los mensajes vayan al cliente que se esta conectando
+    
     //Conectamos con la emision que esta haciendo el cliente
     socket.on('message', data=>{
         message.push(data); //guardamos el dato en nuestra lista
+        console.log(data)
         io.emit('logs', message); //Enviamos los mensajes para que TODOS lo vean
     })
-    socket.on('authenticated', data =>{
-        //socket.broadcast envia a todos menos al socket que esta realizando el evento
-        socket.broadcast.emit('newUserConnected', data);
+    socket.on('messageIngreso', data=>{
+        console.log(data)
+    })
+    socket.on('authenticated', username => {
+        // Mensaje de bienvenida para el nuevo usuario
+        const welcomeMsg = {config: "bienvenida", message: `${username} se ha unido al chat` };
+        message.push(welcomeMsg);                  // lo guardamos en el historial
+        socket.broadcast.emit('logs', message);    // lo ven TODOS MENOS el que entra
+    });
+
+    socket.on("tateti:start", username => {
+        
     })
 }) 
